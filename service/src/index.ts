@@ -19,7 +19,7 @@ router.post('/chat-process', async (req, res) => {
   res.setHeader('Content-type', 'application/octet-stream')
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
   globalThis.console.log(`[IP: ${ip}]`, req.body)
-  if (!ip?.toString().startsWith('58.250')) {
+  if (!ip?.toString().startsWith('58.25')) {
     res.write(JSON.stringify({ type: 'Fail', message: 'IP is not allowed' }))
     res.end()
     return
