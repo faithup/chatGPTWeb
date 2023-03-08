@@ -17,7 +17,9 @@ app.all('*', (_, res, next) => {
 
 router.post('/chat-process', async (req, res) => {
   res.setHeader('Content-type', 'application/octet-stream')
-
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress
+  globalThis.console.log(`[IP: ${ip}]`, req.body)
+	console.log(ip)
   try {
     const { prompt, options = {} } = req.body as { prompt: string; options?: ChatContext }
     let firstChunk = true
